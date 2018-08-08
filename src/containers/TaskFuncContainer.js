@@ -10,7 +10,7 @@ class TaskFuncContainer extends Component {
         var {toggleForm} = this.props;
 
         return (
-           <TaskFunc toggleForm={toggleForm} /> 
+           <TaskFunc toggleForm={toggleForm} search={this.props.search} /> 
         );
     }
 
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         toggleForm : () => {
             dispatch(actions.toggleForm())
+        },
+        search: (keyword) => {
+            dispatch(actions.search(keyword));
         }
     }
 }

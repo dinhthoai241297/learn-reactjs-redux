@@ -1,2 +1,11 @@
 export const TOGGLE_FORM = 'TOGGLE_FORM';
 export const SAVE_TASK = 'SAVE_TASK';
+export const SET_EIDT_TASK = 'SET_EIDT_TASK';
+export const OPEN_FORM = 'OPEN_FORM';
+export const CLOSE_FORM = 'CLOSE_FORM';
+export const CLEAR_EDIT_TASK = 'CLEAR_EDIT_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
+export const UPDATE_SATUS = 'UPDATE_SATUS';
+export const SEARCH = 'SEARCH';
+export const SORT = 'SORT';
+export const STATUS = 'STATUS';

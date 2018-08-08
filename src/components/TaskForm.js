@@ -27,15 +27,27 @@ class TaskForm extends Component {
             name,
             status
         });
-        this.clearForm();
+        this.closeForm();
     }
 
-    clearForm = () => {
+    closeForm = () => {
         this.setState({
             name: '',
             status: 0,
             id: ''
         });
+        this.props.closeForm();
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        var {taskEdit} = nextProps;
+        if (taskEdit) {
+            this.setState({
+                name: taskEdit.name,
+                status: taskEdit.status,
+                id: taskEdit.id
+            });
+        }
     }
 
     render() {
@@ -68,7 +80,7 @@ class TaskForm extends Component {
                             </div>
                             <div className="form-group">
                                 <input type="submit" value="Lưu lại" className="btn btn-success mr-2" />
-                                <input type="button" value="Hủy" className="btn btn-warning" />
+                                <input type="button" value="Hủy" className="btn btn-warning" onClick={this.closeForm} />
                             </div>
                         </form>
                     </div>
