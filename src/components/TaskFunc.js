@@ -21,11 +21,20 @@ class TaskFunc extends Component {
         this.props.search(this.state.keyword);
     }
 
+    showForm = () => {
+        if (this.props.taskedit) {
+            this.props.clearEditTask();
+        } else {
+            this.props.toggleForm();
+        }
+    }
+
     render() {
+        var {s} = this.props;
         return (
             <div className="row">
                 <div className="col-auto mb-4">
-                    <button className="btn btn-primary" onClick={this.props.toggleForm}>Thêm công việc</button>
+                    <button className="btn btn-primary" onClick={this.showForm}>Thêm công việc</button>
                 </div>
                 <div className="col-auto mb-4">
                     <form onSubmit={this.onSubmit}>
@@ -48,11 +57,31 @@ class TaskFunc extends Component {
                             Sắp xếp
                                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item">Tên A-Z</a>
-                            <a className="dropdown-item">Tên Z-A</a>
+                            <a 
+                                className={'dropdown-item ' + (s.sortBy === 'name' && s.sortValue === 1 ? 'active' : '')} 
+                                onClick={() => this.props.sort({sortBy: 'name', sortValue: 1})}
+                            >
+                                Tên A-Z
+                            </a>
+                            <a 
+                                className={'dropdown-item ' + (s.sortBy === 'name' && s.sortValue === -1 ? 'active' : '')}
+                                onClick={() => this.props.sort({sortBy: 'name', sortValue: -1})}
+                            >
+                                Tên Z-A
+                            </a>
                             <hr />
-                            <a className="dropdown-item">Trạng thái A-Z</a>
-                            <a className="dropdown-item">Trạng thái Z-A</a>
+                            <a 
+                                className={'dropdown-item ' + (s.sortBy === 'status' && s.sortValue === 1 ? 'active' : '')}
+                                onClick={() => this.props.sort({sortBy: 'status', sortValue: 1})}
+                            >
+                                Trạng thái A-Z
+                            </a>
+                            <a 
+                                className={'dropdown-item ' + (s.sortBy === 'status' && s.sortValue === -1 ? 'active' : '')}
+                                onClick={() => this.props.sort({sortBy: 'status', sortValue: -1})}
+                            >
+                                Trạng thái Z-A
+                            </a>
                         </div>
                     </div>
                 </div>

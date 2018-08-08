@@ -20,15 +20,19 @@ class TaskView extends Component {
                                 <th scope="row"></th>
                                 <td>
                                     <form>
-                                        <input type="text" className="form-control" />
+                                        <input 
+                                            type="text" 
+                                            className="form-control"
+                                            onChange={(e) => this.props.search(e.target.value)}
+                                        />
                                     </form>
                                 </td>
                                 <td>
-                                    <select className="form-control">
-                                        <option>Tất cả</option>
-                                        <option>Chưa làm</option>
-                                        <option>Đang làm</option>
-                                        <option>Đã làm</option>
+                                    <select onChange={(e) => this.props.status(parseInt(e.target.value, 10))} className="form-control">
+                                        <option value={-1}>Tất cả</option>
+                                        <option value={0}>Chưa làm</option>
+                                        <option value={1}>Đang làm</option>
+                                        <option value={2}>Đã làm</option>
                                     </select>
                                 </td>
                                 <td></td>

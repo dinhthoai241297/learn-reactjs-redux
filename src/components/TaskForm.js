@@ -47,6 +47,12 @@ class TaskForm extends Component {
                 status: taskEdit.status,
                 id: taskEdit.id
             });
+        } else {
+            this.setState({
+                name: '',
+                status: 0,
+                id: ''
+            });
         }
     }
 
@@ -64,7 +70,7 @@ class TaskForm extends Component {
             <div className="col-12 col-lg-4 mb-4">
                 <div className="card">
                     <div className="card-header">
-                        Thêm công việc
+                        {this.props.taskEdit ? 'Sửa công việc' : 'Thêm công việc'}
                                 </div>
                     <div className="card-body">
                         <form onSubmit={this.onSubmit} >

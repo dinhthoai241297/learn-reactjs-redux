@@ -11,11 +11,16 @@ class TaskViewContainer extends Component {
         var { tasks } = this.props;
 
         return (
-            <TaskView tasks={this.showTasks(tasks)} />
+            <TaskView 
+                tasks={this.showTasks(tasks)}
+                status={this.props.status}
+                search={this.props.search}
+            />
         );
     }
 
     showTasks = (tasks) => {
+        tasks = this.filter(tasks);
         var rs = null;
         if (tasks) {
             rs = tasks.map((task, index) => {
@@ -39,18 +44,22 @@ class TaskViewContainer extends Component {
 
     filter(tasks) {
 
-        var {keyword} = this.props.filter;
-
+        var {keyword, status, sortBy, sortValue} = this.props.filter;
         // tìm kiếm
+        tasks = tasks.filter(task => task.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1);
 
         // trạng thái
+        if (status !== -1) {
+            tasks = tasks.filter(task => task.status === status);
+        }
 
         // sort
-
+        if (sortBy === 'name') {
+            tasks = tasks.sort((a, b) => a.name === b.name ? 0 : a.name > b.name ? sortValue : -sortValue);
+        } else {
+            tasks = tasks.sort((a, b) => a.status === b.status ? 0 : a.status > b.status ? sortValue : -sortValue);
+        }
         return tasks;
-    }
-    search = (tasks, keyword) => {
-        
     }
 }
 
@@ -74,6 +83,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         updateStatus: (id) => {
             dispatch(actions.updateStatus(id));
+        },
+        status: (value) => {
+            dispatch(actions.status(value));
+        },
+        search: (keyword) => {
+            dispatch(actions.search(keyword));
         }
     }
 }

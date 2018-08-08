@@ -10,10 +10,20 @@ class TaskFuncContainer extends Component {
         var {toggleForm} = this.props;
 
         return (
-           <TaskFunc toggleForm={toggleForm} search={this.props.search} /> 
+           <TaskFunc clearEditTask={this.props.clearEditTask} taskedit={this.props.taskedit} s={this.props.s} toggleForm={toggleForm} search={this.props.search} sort={this.props.sort} /> 
         );
     }
 
+}
+
+const mapStateToProps = state => {
+    return {
+        s: {
+            sortBy: state.filter.sortBy,
+            sortValue: state.filter.sortValue
+        },
+        taskedit : state.taskedit
+    }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -23,8 +33,14 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         search: (keyword) => {
             dispatch(actions.search(keyword));
+        },
+        sort: (sort) => {
+            dispatch(actions.sort(sort));
+        },
+        clearEditTask: () => {
+            dispatch(actions.clearEditTask());
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(TaskFuncContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskFuncContainer);
