@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import TaskItem from './TaskItem';
 
-class ViewTask extends Component {
+class TaskView extends Component {
 
     render() {
         return (
@@ -34,7 +33,7 @@ class ViewTask extends Component {
                                 </td>
                                 <td></td>
                             </tr>
-                            <TaskItem />
+                            {this.props.tasks}
                         </tbody>
                     </table>
                 </div>
@@ -43,4 +42,4 @@ class ViewTask extends Component {
     }
 }
 
-export default ViewTask;
+export default TaskView;

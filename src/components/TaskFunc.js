@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class FuncTask extends Component {
+class TaskFunc extends Component {
 
     render() {
         return (
             <div className="row">
                 <div className="col-auto mb-4">
-                    <button className="btn btn-primary">Thêm công việc</button>
+                    <button className="btn btn-primary" onClick={this.props.toggleForm}>Thêm công việc</button>
                 </div>
                 <div className="col-auto mb-4">
                     <form>
@@ -38,4 +38,4 @@ class FuncTask extends Component {
 
 }
 
-export default FuncTask;
+export default TaskFunc;

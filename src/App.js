@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import FormTask from './components/FormTask';
-import FuncTask from './components/FuncTask';
-import ViewTask from './components/ViewTask';
+import TaskFormContainer from './containers/TaskFormContainer';
+import TaskFuncContainer from './containers/TaskFuncContainer';
+import TaskViewContainer from './containers/TaskViewContainer';
 
 class App extends Component {
     render() {
@@ -16,9 +16,9 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="row mt-5">
-                        <FormTask />
+                        <TaskFormContainer />
                         <div className="col-12 col-lg">
-                            <FuncTask />
+                            <TaskFuncContainer />
                             <div className="row mb-2">
                                 <div className="col-12 text-center">
                                     <h4>
@@ -26,7 +26,7 @@ class App extends Component {
                                     </h4>
                                 </div>
                             </div>
-                            <ViewTask />
+                            <TaskViewContainer />
                         </div>
                     </div>
                 </div>
